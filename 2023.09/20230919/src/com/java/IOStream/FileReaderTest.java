@@ -1,0 +1,33 @@
+package com.java.IOStream;
+
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class FileReaderTest {
+
+	public static void main(String[] args) {
+		try {
+			FileReader fr = new FileReader("src/com/java/IOStream/FileReaderTest.java");
+			FileWriter fw = new FileWriter("src/com/java/IOStream/convert.txt");
+
+			int data = 0;
+
+			while ((data = fr.read()) != -1) {
+				if (data != '\t' && data != '\n' && data != '\r') { // 3개의 특수문자가 아닐때만
+					fw.write(data);
+				}
+			}
+			System.out.println("한글 안깨짐");		// FileViewer에서는 깨졌는데 이 클래스는 안깨짐 
+			
+			fr.close();
+			fw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+}
